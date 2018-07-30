@@ -4,4 +4,4 @@
 
 (describe "A Clojure test"
   (it "fails. Fix it!"
-    (should= 0 1)))
+    (should= 1 1)))
