@@ -16,6 +16,14 @@
   (apply mapv vector (get-rows board)))
 
 (defn get-diagonals [board]
-  [[1 5 9] [3 5 7]])
+  [[(nth board 0) (nth board 4) (nth board 8)] 
+    [(nth board 2) (nth board 4) (nth board 6)]])
 
-(defn is-won? [board])
+(defn get-win-paths [board]
+  (concat (get-rows board) (get-columns board) (get-diagonals board)))
+
+(defn win-in-path? [path]
+ (= (count (distinct path)) 1))
+
+(defn is-won? [board]
+  (some true? (mapv win-in-path? (get-win-paths board))))
