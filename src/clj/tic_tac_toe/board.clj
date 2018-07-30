@@ -5,3 +5,6 @@
 
 (defn put-sign-on-board [board place sign]
   (assoc board (- (Integer/parseInt place) 1) sign))
+
+(defn get-available-moves [board]
+  (filter number? board))
