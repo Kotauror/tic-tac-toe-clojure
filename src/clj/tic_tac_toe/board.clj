@@ -9,4 +9,7 @@
 (defn get-available-moves [board]
   (filter number? board))
 
+(defn get-rows [board]
+  (partition 3 board))
+
 (defn is-won? [board])
