@@ -8,3 +8,5 @@
 
 (defn get-available-moves [board]
   (filter number? board))
+
+(defn is-won? [board])
