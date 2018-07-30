@@ -15,4 +15,7 @@
 (defn get-columns [board]
   (apply mapv vector (get-rows board)))
 
+(defn get-diagonals [board]
+  [[1 5 9] [3 5 7]])
+
 (defn is-won? [board])

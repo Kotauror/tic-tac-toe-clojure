@@ -5,6 +5,7 @@
                                        get-available-moves
                                        get-rows
                                        get-columns
+                                       get-diagonals
                                        is-won?]]))
 
 (describe "create-board"
@@ -37,3 +38,8 @@
   (it "returns colums in the board"
     (should= [[1 4 7] [2 5 8] [3 6 9]]
     (get-columns [1 2 3 4 5 6 7 8 9]))))
+
+(describe "get-diagonals"
+  (it "returns diagonals"
+    (should= [[1 5 9] [3 5 7]]
+    (get-diagonals [1 2 3 4 5 6 7 8 9]))))
