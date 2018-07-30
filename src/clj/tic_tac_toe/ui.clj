@@ -1,11 +1,10 @@
 (ns tic_tac_toe.ui)
 
-(defn string-row [subvector]
+(defn print-row [row]
+  (println row))
+
+(defn row-as-string [subvector]
   (clojure.string/join " | " subvector))
 
-(defn show-board [board]
-  (print (string-row (subvec board 0 3)))
-  (println)
-  (print (string-row (subvec board 3 6)))
-  (println)
-  (print (string-row (subvec board 6 9))))
+(defn show-board [board-rows]
+  (mapv print-row (mapv row-as-string board-rows)))

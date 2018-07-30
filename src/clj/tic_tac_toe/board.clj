@@ -17,7 +17,7 @@
 
 (defn get-diagonals [board]
   [[(nth board 0) (nth board 4) (nth board 8)] 
-    [(nth board 2) (nth board 4) (nth board 6)]])
+   [(nth board 2) (nth board 4) (nth board 6)]])
 
 (defn get-win-paths [board]
   (concat (get-rows board) (get-columns board) (get-diagonals board)))
