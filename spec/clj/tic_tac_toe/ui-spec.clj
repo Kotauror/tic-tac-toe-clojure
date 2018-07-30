@@ -6,5 +6,5 @@
 (describe "show-board"
   (it "shows a board"
     (should=
-      "1 2 3\n4 X 6\n7 8 9"
+      "1 | 2 | 3\n4 | X | 6\n7 | 8 | 9"
       (with-out-str (show-board [1 2 3 4 "X" 6 7 8 9])))))

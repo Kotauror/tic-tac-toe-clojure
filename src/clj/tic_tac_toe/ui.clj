@@ -1,8 +1,7 @@
-(ns tic_tac_toe.ui
-  (:require [clojure.math.numeric-tower :as math]))
+(ns tic_tac_toe.ui)
 
 (defn string-row [subvector]
-  (clojure.string/join " " subvector))
+  (clojure.string/join " | " subvector))
 
 (defn show-board [board]
   (print (string-row (subvec board 0 3)))
