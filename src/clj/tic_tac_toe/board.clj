@@ -12,4 +12,7 @@
 (defn get-rows [board]
   (partition 3 board))
 
+(defn get-columns [board]
+  (apply mapv vector (get-rows board)))
+
 (defn is-won? [board])

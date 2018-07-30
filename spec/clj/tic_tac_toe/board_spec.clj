@@ -4,6 +4,7 @@
                                        put-sign-on-board
                                        get-available-moves
                                        get-rows
+                                       get-columns
                                        is-won?]]))
 
 (describe "create-board"
@@ -31,3 +32,8 @@
   (it "returns rows in the board"
     (should= [[1 2 3] [4 5 6] [7 8 9]]
     (get-rows [1 2 3 4 5 6 7 8 9]))))
+
+(describe "get-columns"
+  (it "returns colums in the board"
+    (should= [[1 4 7] [2 5 8] [3 6 9]]
+    (get-columns [1 2 3 4 5 6 7 8 9]))))
