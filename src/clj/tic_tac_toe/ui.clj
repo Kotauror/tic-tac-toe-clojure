@@ -8,3 +8,9 @@
 
 (defn show-board [board-rows]
   (mapv print-row (mapv row-as-string board-rows)))
+
+(defn print-prompt [prompt]
+  (println prompt))
+
+(defn get-user-input []
+  (read-line))
