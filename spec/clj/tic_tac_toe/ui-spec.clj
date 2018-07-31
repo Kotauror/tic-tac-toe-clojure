@@ -1,6 +1,7 @@
 (ns tic_tac_toe.ui-spec
   (:require [speclj.core :refer :all]
-            [tic_tac_toe.ui :refer [show-board
+            [tic_tac_toe.ui :refer [get-user-move
+                                    show-board
                                     print-prompt
                                     get-user-input]]))
 
@@ -22,4 +23,14 @@
     (should= "hello test"
       (with-in-str "hello test"
         (get-user-input)))))
+
+(describe "get-user-move"
+  (it "returns user move when input is valid"
+    (should= "1"
+      (with-in-str "1"
+        (get-user-move [1 2 3 4 5 6 7 8 9]))))
+  (it "returns valid input of user"
+    (should= "2"
+      (with-in-str "1\n2"
+        (get-user-move ["X" 2 3 4 5 6 7 8 9])))))
 

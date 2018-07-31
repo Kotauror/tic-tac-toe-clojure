@@ -1,5 +1,6 @@
 (ns tic_tac_toe.ui
-  (:require [tic_tac_toe.prompts :refer [pick-position-prompt]]))
+  (:require [tic_tac_toe.board :refer [is-valid-position?]]
+            [tic_tac_toe.prompts :refer [pick-position-prompt]]))
 
 (defn print-row [row]
   (println row))
@@ -18,4 +19,7 @@
 
 (defn get-user-move [board]
   (print-prompt pick-position-prompt)
-  (get-user-input))
+  (let [input (get-user-input)]
+    (if (is-valid-position? (read-string input) board)
+      input
+      (recur board))))
