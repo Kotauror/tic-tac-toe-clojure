@@ -1,8 +1,14 @@
 (ns tic_tac_toe.game
-  (:require [tic_tac_toe.board :refer [create-board]]))
+  (:require [tic_tac_toe.board :refer [get-rows
+                                       create-board]]
+            [tic_tac_toe.ui :refer [print-prompt
+                                    show-board]]
+            [tic_tac_toe.prompts :refer [hello-prompt]]))
 
-(defn play-turn [board])
+(defn play-turn [board]
+  (show-board (get-rows board)))
 
 (defn run-game []
- (play-turn (create-board)))
+  (print-prompt hello-prompt)
+  (play-turn (create-board)))
 

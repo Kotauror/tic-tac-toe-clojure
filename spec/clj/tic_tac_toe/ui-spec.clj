@@ -12,7 +12,7 @@
       "1 | 2 | 3\n4 | X | 6\n7 | 8 | 9\n"
       (with-out-str (show-board [[1 2 3] [4 "X" 6] [7 8 9]])))))
 
-(describe "print-message" 
+(describe "print-prompt" 
   (it "prints a given message with a new line"
     (should=
       "test message\n"
