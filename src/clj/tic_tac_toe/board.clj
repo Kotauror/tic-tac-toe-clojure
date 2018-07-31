@@ -9,6 +9,10 @@
 (defn get-available-moves [board]
   (filter number? board))
 
+(defn has-free-places? [board]
+  (boolean
+    (some number? board)))
+
 (defn get-rows [board]
   (partition 3 board))
 

@@ -2,6 +2,7 @@
   (:require [speclj.core :refer :all]
             [tic_tac_toe.board :refer [create-board
                                        put-sign-on-board
+                                       has-free-places?
                                        get-available-moves
                                        get-rows
                                        get-columns
@@ -21,6 +22,14 @@
   (it "puts sign on a specified place in board"
     (should= [1 2 "X" 4 5 6 7 8 9]
     (put-sign-on-board (create-board) "3" "X"))))
+
+(describe "has-free-places?"
+  (it "returns true if board has free places"
+    (should= true 
+    (has-free-places? ["X" "X" "X" "X" "X" "O" "O" 8 "X"])))
+  (it "returns false when board has no free places"
+    (should= false
+    (has-free-places? ["X" "X" "X" "X" "X" "O" "X" "O" "X"]))))
 
 (describe "get-available-moves"
   (it "returns vector with non-taken numbers on board"
