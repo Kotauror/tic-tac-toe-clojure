@@ -1,5 +1,6 @@
 (ns tic_tac_toe.game
   (:require [tic_tac_toe.board :refer [get-rows
+                                       get-winner-sign
                                        is-over?
                                        create-board
                                        put-sign-on-board]]
@@ -12,7 +13,7 @@
 (defn play-turn [board]
   (show-board (get-rows board))
   (cond 
-    (is-over? board) (println "Over")
+    (is-over? board) (print-final-result (get-winner-sign board))
     :else (do 
       (recur (put-sign-on-board board (pick-position board) "X")))))
 
