@@ -39,15 +39,18 @@
     (get-available-moves [1 2 3 4 "X" "Y" "X" "Y" 9]))))
 
 (describe "is-over?"
-  (it "returns true if the game is over (win in row)"
+  (it "returns true if the game is over (X win in row)"
     (should= true
       (is-over? ["X" "X" "X" 4 5 6 7 8 9])))
-  (it "returns true if the game is over (win in diagonal)"
+  (it "returns true if the game is over (X win in diagonal)"
     (should= true
       (is-over? ["X" 2 3 4 "X" 6 7 8 "X"])))
-  (it "returns true if the game is over (win in column)"
+  (it "returns true if the game is over (X win in column)"
     (should= true
       (is-over? ["X" 2 3 "X" 5 6 "X" 8 9])))
+  (it "returns true if the game is over (O win in column)"
+    (should= true
+      (is-over? ["O" 2 3 "O" 5 6 "O" 8 9])))
   (it "returns false if the game is not over"
     (should= false
       (is-over? ["X" 2 3 4 5 6 7 8 "X"]))))

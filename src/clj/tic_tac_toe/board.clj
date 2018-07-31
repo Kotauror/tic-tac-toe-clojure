@@ -36,4 +36,6 @@
     (some true? (mapv #(win-in-path? % sign) (get-win-paths board)))))
 
 (defn is-over? [board]
-  (winner? player-one-sign board))
+  (or
+    (winner? player-one-sign board)
+    (winner? player-two-sign board)))
