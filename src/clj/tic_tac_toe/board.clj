@@ -35,7 +35,14 @@
   (boolean
     (some true? (mapv #(win-in-path? % sign) (get-win-paths board)))))
 
+(defn is-tie? [board]
+  (and 
+    (not (has-free-places? board))
+    (not (winner? player-one-sign board))
+    (not (winner? player-two-sign board))))
+
 (defn is-over? [board]
   (or
     (winner? player-one-sign board)
-    (winner? player-two-sign board)))
+    (winner? player-two-sign board)
+    (is-tie? board)))

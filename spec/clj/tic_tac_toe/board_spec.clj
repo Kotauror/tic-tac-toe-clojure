@@ -12,6 +12,7 @@
                                        get-win-paths
                                        win-in-path?
                                        winner?
+                                       is-tie?
                                        is-over?]]))
 
 (describe "create-board"
@@ -51,6 +52,9 @@
   (it "returns true if the game is over (O win in column)"
     (should= true
       (is-over? ["O" 2 3 "O" 5 6 "O" 8 9])))
+  (it "returns true if the game is over (tie)"
+    (should= true
+      (is-over? ["X" "O" "X" "O" "O" "X" "X" "X" "O"])))
   (it "returns false if the game is not over"
     (should= false
       (is-over? ["X" 2 3 4 5 6 7 8 "X"]))))
@@ -70,6 +74,17 @@
   (it "tells if the sign is not a winner"
     (should= false
       (winner? "X" ["X" 2 "X" 4 5 6 7 8 9]))))
+
+(describe "is-tie?"
+  (it "returns true on tie"
+    (should= true
+    (is-tie? ["X" "O" "X" "O" "O" "X" "X" "X" "O"])))
+  (it "returns false on tie - game won for X"
+    (should= false
+    (is-tie? ["X" "X" "X" 4 5 "O" "O" 8 9])))
+  (it "returns false on tie - game won for O"
+    (should= false
+    (is-tie? ["O" "O" "O" 4 5 "X" "X" 8 9]))))
 
 (describe "get-rows"
   (it "returns rows in the board"
