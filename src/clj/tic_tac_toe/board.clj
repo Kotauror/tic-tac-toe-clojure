@@ -15,6 +15,10 @@
   (boolean
     (some number? board)))
 
+(defn is-valid-position? [position board]
+  (boolean
+    (some #{position} (get-available-moves board))))
+
 (defn get-rows [board]
   (partition 3 board))
 

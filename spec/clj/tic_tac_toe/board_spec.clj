@@ -13,7 +13,8 @@
                                        win-in-path?
                                        winner?
                                        is-tie?
-                                       is-over?]]))
+                                       is-over?
+                                       is-valid-position?]]))
 
 (describe "create-board"
   (it "creates 3x3 board"
@@ -112,3 +113,15 @@
                      [1 5 9]
                      [3 5 7]]
     (get-win-paths [1 2 3 4 5 6 7 8 9]))))
+
+(describe "is-valid-position?"
+  (it "returns true when position can be taken"
+    (should= true 
+    (is-valid-position? 1 [1 2 3 4 5 6 7 8 9])))
+  (it "returns false when position is taken"
+    (should= false
+    (is-valid-position? 1 ["X" 2 3 4 5 6 7 8 9])))
+  (it "returns false when position is outside the scope of board"
+    (should= false
+    (is-valid-position? 10 ["X" 2 3 4 5 6 7 8 9]))))
+
