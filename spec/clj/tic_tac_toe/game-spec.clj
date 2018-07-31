@@ -1,5 +1,6 @@
 (ns tic_tac_toe.game-spec
   (:require [speclj.core :refer :all]
+            [tic_tac_toe.human_player :refer [pick-position]]
             [tic_tac_toe.ui :refer [show-board
                                     print-prompt]]
             [tic_tac_toe.board :refer [get-rows
@@ -29,6 +30,7 @@
   (with-stubs)
   (it "shows the board"
     (with-redefs [
+      pick-position (stub :pick-position-stub)
       get-rows (stub :get-rows-stub {:return :rows})
       show-board (stub :show-board-stub)]
 
@@ -37,5 +39,10 @@
       (should-have-invoked
         :show-board-stub
         {:with
-          [:rows]}))))
+          [:rows]})
+
+      (should-have-invoked
+        :pick-position-stub
+        {:with 
+          [[1 2 3 4 5 6 7 8 9]]}))))
 
