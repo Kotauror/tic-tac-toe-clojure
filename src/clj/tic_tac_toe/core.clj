@@ -1,1 +1,4 @@
-(ns tic-tac-toe.core)
+(ns tic_tac_toe.core)
+
+(defn -main []
+  (println "Working!"))
