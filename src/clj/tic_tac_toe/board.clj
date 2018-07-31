@@ -8,8 +8,8 @@
 (defn put-sign-on-board [board place sign]
   (assoc board (- (Integer/parseInt place) 1) sign))
 
-(defn get-available-moves [board]
-  (filter number? board))
+(defn get-permitted-moves [board]
+  (mapv str (filter number? board)))
 
 (defn has-free-places? [board]
   (boolean
@@ -17,7 +17,7 @@
 
 (defn is-valid-position? [position board]
   (boolean
-    (some #{position} (get-available-moves board))))
+    (some #{position} (get-permitted-moves board))))
 
 (defn get-rows [board]
   (partition 3 board))

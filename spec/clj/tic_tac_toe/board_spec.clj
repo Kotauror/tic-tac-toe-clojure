@@ -5,7 +5,7 @@
             [tic_tac_toe.board :refer [create-board
                                        put-sign-on-board
                                        has-free-places?
-                                       get-available-moves
+                                       get-permitted-moves
                                        get-rows
                                        get-columns
                                        get-diagonals
@@ -36,10 +36,10 @@
     (should= false
     (has-free-places? ["X" "X" "X" "X" "X" "O" "X" "O" "X"]))))
 
-(describe "get-available-moves"
+(describe "get-permitted-moves"
   (it "returns vector with non-taken numbers on board"
-    (should= [1 2 3 4 9]
-    (get-available-moves [1 2 3 4 "X" "Y" "X" "Y" 9]))))
+    (should= ["1" "2" "3" "4" "9"]
+    (get-permitted-moves [1 2 3 4 "X" "Y" "X" "Y" 9]))))
 
 (describe "is-over?"
   (it "returns true if the game is over (X win in row)"
@@ -118,13 +118,13 @@
 (describe "is-valid-position?"
   (it "returns true when position can be taken"
     (should= true 
-    (is-valid-position? 1 [1 2 3 4 5 6 7 8 9])))
+    (is-valid-position? "1" [1 2 3 4 5 6 7 8 9])))
   (it "returns false when position is taken"
     (should= false
-    (is-valid-position? 1 ["X" 2 3 4 5 6 7 8 9])))
+    (is-valid-position? "1" ["X" 2 3 4 5 6 7 8 9])))
   (it "returns false when position is outside the scope of board"
     (should= false
-    (is-valid-position? 10 ["X" 2 3 4 5 6 7 8 9]))))
+    (is-valid-position? "10" ["X" 2 3 4 5 6 7 8 9]))))
 
 (describe "get-winner-sign"
   (it "returns winner sign when there is one"

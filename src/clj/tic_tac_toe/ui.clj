@@ -20,7 +20,7 @@
 (defn get-user-move [board]
   (print-prompt pick-position-prompt)
   (let [input (get-user-input)]
-    (if (is-valid-position? (read-string input) board)
+    (if (is-valid-position? input board)
       input
       (recur board))))
 
