@@ -7,7 +7,9 @@
                                        get-columns
                                        get-diagonals
                                        get-win-paths
-                                       is-won?]]))
+                                       win-in-path?
+                                       winner?
+                                       is-over?]]))
 
 (describe "create-board"
   (it "creates 3x3 board"
@@ -25,18 +27,34 @@
     (should= [1 2 3 4 9]
     (get-available-moves [1 2 3 4 "X" "Y" "X" "Y" 9]))))
 
-(describe "is-won?"
-  (it "returns true if the game is won in row, false otherwise"
+(describe "is-over?"
+  (it "returns true if the game is won (win in row), false otherwise"
     (should= true
-      (is-won? ["X" "X" "X" 4 5 6 7 8 9])))
+      (is-over? "X" ["X" "X" "X" 4 5 6 7 8 9])))
 
-  (it "returns true if the game is won in diagonal, false otherwise"
+  (it "returns true if the game is won (win in diagonal), false otherwise"
     (should= true
-      (is-won? ["X" 2 3 4 "X" 6 7 8 "X"])))
+      (is-over? "X" ["X" 2 3 4 "X" 6 7 8 "X"])))
 
-  (it "returns true if the game is won in column, false otherwise"
+  (it "returns true if the game is won (win in column), false otherwise"
     (should= true
-      (is-won? ["X" 2 3 "X" 5 6 "X" 8 9]))))
+      (is-over? "X" ["X" 2 3 "X" 5 6 "X" 8 9]))))
+
+(describe "win-in-path?"
+  (it "returns true when there is a win in path"
+    (should= true
+      (win-in-path? ["X" "X" "X"] "X")))
+  (it "returns false when there is no win in path"
+    (should= false
+      (win-in-path? ["X" 2 "X"] "X"))))
+
+(describe "winner?"
+  (it "tells if the sign is a winner"
+    (should= true
+      (winner? "X" ["X" "X" "X" 4 5 6 7 8 9])))
+  (it "tells if the sign is not a winner"
+    (should= false
+      (winner? "X" ["X" 2 "X" 4 5 6 7 8 9]))))
 
 (describe "get-rows"
   (it "returns rows in the board"

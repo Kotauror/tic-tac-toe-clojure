@@ -22,8 +22,12 @@
 (defn get-win-paths [board]
   (concat (get-rows board) (get-columns board) (get-diagonals board)))
 
-(defn win-in-path? [path]
- (= (count (distinct path)) 1))
+(defn win-in-path? [path sign]
+ (= path [sign sign sign]))
 
-(defn is-won? [board]
-  (some true? (mapv win-in-path? (get-win-paths board))))
+(defn winner? [sign board]
+  (boolean
+    (some true? (mapv #(win-in-path? % sign) (get-win-paths board)))))
+
+(defn is-over? [sign board]
+  (winner? sign board))
