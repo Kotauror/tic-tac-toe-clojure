@@ -1,4 +1,6 @@
-(ns tic_tac_toe.board)
+(ns tic_tac_toe.board
+  (:require [tic_tac_toe.signs :refer [player-one-sign
+                                       player-two-sign]]))
 
 (defn create-board []
  (vec (range 1 10)))
@@ -33,5 +35,5 @@
   (boolean
     (some true? (mapv #(win-in-path? % sign) (get-win-paths board)))))
 
-(defn is-over? [sign board]
-  (winner? sign board))
+(defn is-over? [board]
+  (winner? player-one-sign board))

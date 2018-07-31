@@ -1,5 +1,7 @@
 (ns tic_tac_toe.board-spec
   (:require [speclj.core :refer :all]
+            [tic_tac_toe.signs :refer [player-one-sign
+                                       player-two-sign]]
             [tic_tac_toe.board :refer [create-board
                                        put-sign-on-board
                                        has-free-places?
@@ -39,16 +41,16 @@
 (describe "is-over?"
   (it "returns true if the game is over (win in row)"
     (should= true
-      (is-over? "X" ["X" "X" "X" 4 5 6 7 8 9])))
+      (is-over? ["X" "X" "X" 4 5 6 7 8 9])))
   (it "returns true if the game is over (win in diagonal)"
     (should= true
-      (is-over? "X" ["X" 2 3 4 "X" 6 7 8 "X"])))
+      (is-over? ["X" 2 3 4 "X" 6 7 8 "X"])))
   (it "returns true if the game is over (win in column)"
     (should= true
-      (is-over? "X" ["X" 2 3 "X" 5 6 "X" 8 9])))
+      (is-over? ["X" 2 3 "X" 5 6 "X" 8 9])))
   (it "returns false if the game is not over"
     (should= false
-      (is-over? "X" ["X" 2 3 4 5 6 7 8 "X"]))))
+      (is-over? ["X" 2 3 4 5 6 7 8 "X"]))))
 
 (describe "win-in-path?"
   (it "returns true when there is a win in path"
