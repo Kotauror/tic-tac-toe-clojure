@@ -10,6 +10,7 @@
                                        get-columns
                                        get-diagonals
                                        get-win-paths
+                                       get-winner-sign
                                        win-in-path?
                                        winner?
                                        is-tie?
@@ -124,4 +125,12 @@
   (it "returns false when position is outside the scope of board"
     (should= false
     (is-valid-position? 10 ["X" 2 3 4 5 6 7 8 9]))))
+
+(describe "get-winner-sign"
+  (it "returns winner sign when there is one"
+    (should= "X"
+    (get-winner-sign ["X" "X" "X" 4 5 6 7 8 9])))
+  (it "returns nil when there is no winner sign"
+    (should= nil
+    (get-winner-sign ["X" "X" 3 4 5 6 7 8 9]))))
 
