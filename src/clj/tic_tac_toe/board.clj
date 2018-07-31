@@ -52,8 +52,7 @@
     (is-tie? board)))
 
 (defn get-winner-sign [board]
-  (if (winner? player-one-sign board)
-    player-one-sign
-    (if (winner? player-two-sign board)
-      player-two-sign
-      nil)))
+  (cond
+    (winner? player-one-sign board) player-one-sign
+    (winner? player-two-sign board) player-two-sign
+    (is-tie? board) nil))
