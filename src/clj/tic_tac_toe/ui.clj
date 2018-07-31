@@ -23,3 +23,9 @@
     (if (is-valid-position? (read-string input) board)
       input
       (recur board))))
+
+(defn print-final-result [winner-sign]
+  (cond
+    (nil? winner-sign) (println "It's a tie!")
+    :else (do
+      (println (str winner-sign " has won!")))))

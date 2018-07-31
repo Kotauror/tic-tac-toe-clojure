@@ -4,7 +4,8 @@
                                        create-board
                                        put-sign-on-board]]
             [tic_tac_toe.human_player :refer [pick-position]]
-            [tic_tac_toe.ui :refer [print-prompt
+            [tic_tac_toe.ui :refer [print-final-result
+                                    print-prompt
                                     show-board]]
             [tic_tac_toe.prompts :refer [hello-prompt]]))
 
