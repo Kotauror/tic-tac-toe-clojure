@@ -1,9 +1,6 @@
 (ns tic_tac_toe.human_player
-  (:require [tic_tac_toe.ui :refer [print-prompt
-                                    get-user-input]]
+  (:require [tic_tac_toe.ui :refer [get-user-move]]
             [tic_tac_toe.prompts :refer [pick-position-prompt]]))
 
 (defn pick-position [board]
-  (print-prompt pick-position-prompt)
-  (get-user-input))
-  
+  (get-user-move board))
