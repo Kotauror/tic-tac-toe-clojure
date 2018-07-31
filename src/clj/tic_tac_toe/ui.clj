@@ -27,5 +27,4 @@
 (defn print-final-result [winner-sign]
   (cond
     (nil? winner-sign) (println "It's a tie!")
-    :else (do
-      (println (str winner-sign " has won!")))))
+    :else (println (str winner-sign " has won!"))))
