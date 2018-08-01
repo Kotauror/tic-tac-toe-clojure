@@ -69,13 +69,13 @@
     (should= false
       (win-in-path? ["X" 2 "X"] "X"))))
 
-(describe "winner?"
-  (it "tells if the sign is a winner"
-    (should= true
-      (winner? "X" ["X" "X" "X" 4 5 6 7 8 9])))
-  (it "tells if the sign is not a winner"
-    (should= false
-      (winner? "X" ["X" 2 "X" 4 5 6 7 8 9]))))
+;(describe "winner?"
+;  (it "tells if the sign is a winner"
+;    (should= true
+;      (winner? "X" ["X" "X" "X" 4 5 6 7 8 9])))
+;  (it "tells if the sign is not a winner"
+;    (should= false
+;      (winner? "X" ["X" 2 "X" 4 5 6 7 8 9]))))
 
 (describe "is-tie?"
   (it "returns true on tie"

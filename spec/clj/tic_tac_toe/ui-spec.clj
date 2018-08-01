@@ -26,20 +26,25 @@
         (get-user-input)))))
 
 (describe "get-user-move"
+  (with-stubs)
   (it "returns user move when input is valid"
+    (with-redefs [
+      print-prompt (stub :print-prompt-stub)]
     (should= "1"
       (with-in-str "1"
-        (get-user-move [1 2 3 4 5 6 7 8 9]))))
+        (get-user-move [1 2 3 4 5 6 7 8 9])))))
   (it "returns valid input of user"
+    (with-redefs [
+      print-prompt (stub :print-prompt-stub)]
     (should= "2"
       (with-in-str "1\n2"
-        (get-user-move ["X" 2 3 4 5 6 7 8 9])))))
+        (get-user-move ["X" 2 3 4 5 6 7 8 9]))))))
 
-(describe "print-final-result"
-  (it "prints the sign of winner"
-    (should= "X has won!\n"
-      (with-out-str (print-final-result "X"))))
-  (it "prints information about tie"
-    (should= "It's a tie!\n"
-      (with-out-str (print-final-result nil)))))
+;(describe "print-final-result"
+;  (it "prints the sign of winner"
+;    (should= "X has won!\n"
+;      (with-out-str (print-final-result "X"))))
+;  (it "prints information about tie"
+;    (should= "It's a tie!\n"
+;      (with-out-str (print-final-result nil)))))
 
