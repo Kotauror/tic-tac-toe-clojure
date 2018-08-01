@@ -18,23 +18,27 @@
     (apply min-key val moves)))
 
 (defn best-score-at-depth [depth moves]
-  (println depth)
-  (println moves)
+ ; (println depth)
+ ; (println moves)
   (key (best-move-and-score depth moves)))
 
 (defn best-move [moves]
   (key (apply max-key val moves)))
 
 (defn get-score [board active-sign passive-sign depth]
+  (println depth)
+  (println active-sign)
+  (println passive-sign)
   (cond (winner? active-sign board) (- 10 depth)
         (winner? passive-sign board) (- (- 10 depth))
         (is-tie? board) 0
-        :else (best-score-at-depth depth (score-moves board (switch-signs active-sign) (switch-signs passive-sign) (inc depth)))))
+        :else (best-score-at-depth depth (score-moves board active-sign passive-sign depth))))
 
 (defn score-moves [board active-sign passive-sign depth]
   (let [
        moves (get-free-places board)
-       scores (map #(get-score (put-sign-on-board board (str %) active-sign) active-sign passive-sign depth) moves)]
+       scores (map #(get-score (put-sign-on-board board (str %) active-sign) (switch-signs active-sign) (switch-signs passive-sign) (inc depth)) moves)]
+       ;(println scores)
   (zipmap moves scores)))
 
 (defn minimax [board level active-sign passive-sign]
