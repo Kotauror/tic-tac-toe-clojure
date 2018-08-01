@@ -10,7 +10,8 @@
             [tic_tac_toe.human_player :refer [pick-position]]
             [tic_tac_toe.ui :refer [print-final-result
                                     print-prompt
-                                    show-board]]
+                                    show-board
+                                    inform-of-move]]
             [tic_tac_toe.prompts :refer [hello-prompt]]))
 
 (defn play-turn [board active-sign]
@@ -18,10 +19,9 @@
   (cond 
     (is-over? board) (print-final-result (get-winner-sign board))
     :else (do
-      (as-> board v
-      (pick-position v)
-      (put-sign-on-board board v active-sign)
-      (play-turn v (switch-signs active-sign))))))
+      (let [picked-position (pick-position board)]
+        (inform-of-move active-sign picked-position)
+        (recur (put-sign-on-board board picked-position active-sign) (switch-signs active-sign))))))
 
 (defn run-game []
   (print-prompt hello-prompt)

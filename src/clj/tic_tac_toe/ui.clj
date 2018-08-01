@@ -24,6 +24,9 @@
       input
       (recur board))))
 
+(defn inform-of-move [sign move]
+  (println (str "---> " sign " picked " move)))
+
 (defn print-final-result [winner-sign]
   (cond
     (nil? winner-sign) (println "It's a tie!")

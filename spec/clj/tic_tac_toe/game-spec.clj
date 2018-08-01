@@ -4,6 +4,7 @@
             [tic_tac_toe.signs :refer [player-one-sign]]
             [tic_tac_toe.ui :refer [show-board
                                     print-prompt
+                                    inform-of-move
                                     print-final-result]]
             [tic_tac_toe.board :refer [get-rows
                                        get-winner-sign
@@ -66,6 +67,7 @@
   (it "plays a winning game for X"
     (with-redefs [
       show-board (stub :show-board-stub)
+      inform-of-move (stub :inform-of-move-stub)
       print-prompt (stub :print-prompt-stub)]
     (should= "X has won!\n"
       (with-out-str 
@@ -74,6 +76,7 @@
   (it "plays a winning game for O"
     (with-redefs [
       show-board (stub :show-board-stub)
+      inform-of-move (stub :inform-of-move-stub)
       print-prompt (stub :print-prompt-stub)]
     (should= "O has won!\n"
       (with-out-str 

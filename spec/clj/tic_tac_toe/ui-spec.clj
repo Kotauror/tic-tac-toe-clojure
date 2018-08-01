@@ -4,6 +4,7 @@
                                     show-board
                                     print-prompt
                                     get-user-input
+                                    inform-of-move
                                     print-final-result]]))
 
 
@@ -40,11 +41,15 @@
       (with-in-str "1\n2"
         (get-user-move ["X" 2 3 4 5 6 7 8 9]))))))
 
-;(describe "print-final-result"
-;  (it "prints the sign of winner"
-;    (should= "X has won!\n"
-;      (with-out-str (print-final-result "X"))))
-;  (it "prints information about tie"
-;    (should= "It's a tie!\n"
-;      (with-out-str (print-final-result nil)))))
+(describe "print-final-result"
+  (it "prints the sign of winner"
+    (should= "X has won!\n"
+      (with-out-str (print-final-result "X"))))
+  (it "prints information about tie"
+    (should= "It's a tie!\n"
+      (with-out-str (print-final-result nil)))))
 
+(describe "inform-of-move"
+  (it "informs of move"
+    (should= "---> X picked 8\n"
+      (with-out-str (inform-of-move "X" "8")))))
