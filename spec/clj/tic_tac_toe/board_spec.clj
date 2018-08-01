@@ -8,6 +8,7 @@
                                        get-permitted-moves
                                        get-rows
                                        get-columns
+                                       get-free-places
                                        get-diagonals
                                        get-win-paths
                                        get-winner-sign
@@ -41,6 +42,11 @@
     (should= ["1" "2" "3" "4" "9"]
     (get-permitted-moves [1 2 3 4 "X" "Y" "X" "Y" 9]))))
 
+(describe "get-free-places"
+  (it "returns vectr with places in board vector"
+    (should= [1 2 3 4 9]
+    (get-free-places [1 2 3 4 "X" "X" "X" "X" 9]))))
+
 (describe "is-over?"
   (it "returns true if the game is over (X win in row)"
     (should= true
@@ -69,13 +75,13 @@
     (should= false
       (win-in-path? ["X" 2 "X"] "X"))))
 
-;(describe "winner?"
-;  (it "tells if the sign is a winner"
-;    (should= true
-;      (winner? "X" ["X" "X" "X" 4 5 6 7 8 9])))
-;  (it "tells if the sign is not a winner"
-;    (should= false
-;      (winner? "X" ["X" 2 "X" 4 5 6 7 8 9]))))
+(describe "winner?"
+  (it "tells if the sign is a winner"
+    (should= true
+      (winner? "X" ["X" "X" "X" 4 5 6 7 8 9])))
+  (it "tells if the sign is not a winner"
+    (should= false
+      (winner? "X" ["X" 2 "X" 4 5 6 7 8 9]))))
 
 (describe "is-tie?"
   (it "returns true on tie"

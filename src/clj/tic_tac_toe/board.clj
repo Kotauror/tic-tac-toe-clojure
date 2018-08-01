@@ -11,6 +11,9 @@
 (defn get-permitted-moves [board]
   (mapv str (filter number? board)))
 
+(defn get-free-places [board]
+  (filter number? board))
+
 (defn has-free-places? [board]
   (boolean
     (some number? board)))
