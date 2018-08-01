@@ -2,17 +2,18 @@
   (:require [speclj.core :refer :all]
             [tic_tac_toe.signs :refer [player-one-sign
                                        player-two-sign]]
-            [tic_tac_toe.computer :refer [calculate-score
+            [tic_tac_toe.computer :refer [
+                                          ;calculate-score
                                           score-moves
                                           minimax]]))
 
-(describe "calculate-score"
-  (it "calculates score for terminal board - active player"
-    (should= 6
-    (calculate-score ["X" "X" "X" 4 5 "Y" 7 8 9] 4 "X" "Y")))
-  (it "calculates score for terminal board - passive player"
-    (should= -6
-    (calculate-score ["Y" "Y" "Y" 4 5 "Y" 7 8 9] 4 "X" "Y"))))
+;(describe "calculate-score"
+;  (it "calculates score for terminal board - active player"
+;    (should= 6
+;    (calculate-score ["X" "X" "X" 4 5 "Y" 7 8 9] 4 "X" "Y")))
+;  (it "calculates score for terminal board - passive player"
+;    (should= -6
+;    (calculate-score ["Y" "Y" "Y" 4 5 "Y" 7 8 9] 4 "X" "Y"))))
 
 (describe "score-moves"
   (it "creates a hash-map with scores for moves"

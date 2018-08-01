@@ -6,11 +6,11 @@
                                        is-tie?]]))
 (declare score-moves)
 
-(defn calculate-score [board level active-sign passive-sign]
-  (cond 
-    (winner? active-sign board) (- 10 level)
-    (winner? passive-sign board) (- (- 10 level)) 
-    (is-tie? board) 0 ))
+;(defn calculate-score [board level active-sign passive-sign]
+;  (cond 
+;    (winner? active-sign board) (- 10 level)
+;    (winner? passive-sign board) (- (- 10 level)) 
+;    (is-tie? board) 0 ))
 
 (defn best-move-and-score [depth moves] 
   (if (= (mod depth 2) 0)
