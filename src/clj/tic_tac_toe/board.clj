@@ -11,6 +11,9 @@
 (defn get-permitted-moves [board]
   (mapv str (filter number? board)))
 
+(defn get-free-places [board]
+  (filter number? board))
+
 (defn has-free-places? [board]
   (boolean
     (some number? board)))
@@ -56,3 +59,14 @@
     (winner? player-one-sign board) player-one-sign
     (winner? player-two-sign board) player-two-sign
     (is-tie? board) nil))
+
+(defn get-current-mark [board]
+  (let [free-places-count (count (get-free-places board))]
+  (if (= (mod free-places-count 2) 0)
+    player-two-sign
+    player-one-sign)))
+
+(defn get-opponent-mark [board]
+  (if (= (get-current-mark board) player-one-sign)
+    player-two-sign
+    player-one-sign))

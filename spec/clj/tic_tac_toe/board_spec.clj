@@ -8,6 +8,7 @@
                                        get-permitted-moves
                                        get-rows
                                        get-columns
+                                       get-free-places
                                        get-diagonals
                                        get-win-paths
                                        get-winner-sign
@@ -15,6 +16,8 @@
                                        winner?
                                        is-tie?
                                        is-over?
+                                       get-current-mark
+                                       get-opponent-mark
                                        is-valid-position?]]))
 
 (describe "create-board"
@@ -40,6 +43,11 @@
   (it "returns vector with non-taken numbers on board"
     (should= ["1" "2" "3" "4" "9"]
     (get-permitted-moves [1 2 3 4 "X" "Y" "X" "Y" 9]))))
+
+(describe "get-free-places"
+  (it "returns vectr with places in board vector"
+    (should= [1 2 3 4 9]
+    (get-free-places [1 2 3 4 "X" "X" "X" "X" 9]))))
 
 (describe "is-over?"
   (it "returns true if the game is over (X win in row)"
@@ -69,13 +77,13 @@
     (should= false
       (win-in-path? ["X" 2 "X"] "X"))))
 
-;(describe "winner?"
-;  (it "tells if the sign is a winner"
-;    (should= true
-;      (winner? "X" ["X" "X" "X" 4 5 6 7 8 9])))
-;  (it "tells if the sign is not a winner"
-;    (should= false
-;      (winner? "X" ["X" 2 "X" 4 5 6 7 8 9]))))
+(describe "winner?"
+  (it "tells if the sign is a winner"
+    (should= true
+      (winner? "X" ["X" "X" "X" 4 5 6 7 8 9])))
+  (it "tells if the sign is not a winner"
+    (should= false
+      (winner? "X" ["X" 2 "X" 4 5 6 7 8 9]))))
 
 (describe "is-tie?"
   (it "returns true on tie"
@@ -134,3 +142,24 @@
     (should= nil
     (get-winner-sign ["X" "X" 3 4 5 6 7 8 9]))))
 
+(describe "get-current-mark"
+  (it "returns the current mark at the beginning of the game"
+    (should= "X"
+    (get-current-mark [1 2 3 4 5 6 7 8 9])))
+  (it "returns the current mark for X in the middle of game"
+    (should= "X"
+    (get-current-mark ["X" "O" 3 4 5 6 7 8 9])))
+  (it "returns the current mark for O in the middle of game"
+    (should= "O"
+    (get-current-mark ["X" 2 3 4 5 6 7 8 9]))))
+
+(describe "get-opponent-mark"
+  (it "returns the opponent mark at the beginning of the game"
+    (should= "O"
+    (get-opponent-mark [1 2 3 4 5 6 7 8 9])))
+  (it "returns the opponent mark for O in the middle of the game"
+    (should= "O"
+    (get-opponent-mark ["X" "O" 3 4 5 6 7 8 9])))
+  (it "returns the opponent mark for X in the middle of the game"
+    (should= "X"
+    (get-opponent-mark ["X" "O" "X" 4 5 6 7 8 9]))))
