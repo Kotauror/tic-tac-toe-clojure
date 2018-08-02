@@ -1,6 +1,8 @@
 (ns tic_tac_toe.game
   (:require [tic_tac_toe.board :refer [get-rows
                                        get-winner-sign
+                                       get-current-mark
+                                       get-opponent-mark
                                        is-over?
                                        create-board
                                        put-sign-on-board]]
@@ -8,22 +10,37 @@
                                        player-two-sign
                                        switch-signs]]
             [tic_tac_toe.human_player :refer [pick-position]]
+            [tic_tac_toe.computer :refer [minimax]]
             [tic_tac_toe.ui :refer [print-final-result
                                     print-prompt
                                     show-board
                                     inform-of-move]]
             [tic_tac_toe.prompts :refer [hello-prompt]]))
 
-(defn play-turn [board active-sign]
+(declare play-turn)
+
+(defn process-move [picked-position board level]
+  (let [current-player (get-current-mark board)]
+  (inform-of-move current-player picked-position)
+  (play-turn (put-sign-on-board board picked-position current-player) (inc level))))
+
+(defn human-move [board level]
+  (process-move (pick-position board) board level))
+
+(defn computer-move [board level]
+  (process-move (str (minimax board)) board level))
+
+(defn play-move [board level]
+  (if (= (mod level 2) 0) 
+    (human-move board level)
+    (computer-move board level)))
+
+(defn play-turn [board level]
   (show-board (get-rows board))
-  (cond 
-    (is-over? board) (print-final-result (get-winner-sign board))
-    :else (do
-      (let [picked-position (pick-position board)]
-        (inform-of-move active-sign picked-position)
-        (recur (put-sign-on-board board picked-position active-sign) (switch-signs active-sign))))))
+  (if (is-over? board) 
+    (print-final-result (get-winner-sign board))
+    (play-move board level)))
 
 (defn run-game []
   (print-prompt hello-prompt)
-  (play-turn (create-board) player-one-sign))
-
+  (play-turn (create-board) 0))
