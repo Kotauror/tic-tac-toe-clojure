@@ -24,6 +24,9 @@
   (it "X prevents O from winning"
     (should= 6
       (minimax ["X" "X" "O" 4 5 6 7 8 "O"])))
+  (it "takes middle as the second position"
+    (should= 5
+      (minimax ["X" 2 3 4 5 6 7 8 9])))
   (it "O prevents X from winning"
     (should= 6
       (minimax ["O" "O" "X" 4 5 6 7 8 "X"]))))
