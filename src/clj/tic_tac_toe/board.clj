@@ -63,10 +63,10 @@
 (defn get-current-mark [board]
   (let [free-places-count (count (get-free-places board))]
   (if (= (mod free-places-count 2) 0)
-    "O"
-    "X")))
+    player-two-sign
+    player-one-sign)))
 
 (defn get-opponent-mark [board]
-  (if (= (get-current-mark board) "X")
-    "O"
-    "X"))
+  (if (= (get-current-mark board) player-one-sign)
+    player-two-sign
+    player-one-sign))
