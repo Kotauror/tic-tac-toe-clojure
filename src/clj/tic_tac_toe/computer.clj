@@ -15,13 +15,16 @@
   (boolean
     (= (mod depth 2) 0)))
 
-(defn best-move-and-score [depth moves] 
-  (if (is-max-player-level? depth)
-    (apply max-key val moves)
-    (apply min-key val moves)))
+(defn pick-lowest-scoring-move [moves]
+  (val (apply min-key val moves)))
+
+(defn pick-highest-scoring-move [moves]
+  (val (apply max-key val moves)))
 
 (defn best-score-at-depth [depth moves]
-  (val (best-move-and-score depth moves)))
+  (if (is-max-player-level? depth)
+    (pick-highest-scoring-move moves)
+    (pick-lowest-scoring-move moves)))
 
 (defn best-move [moves]
   (key (apply max-key val moves)))
