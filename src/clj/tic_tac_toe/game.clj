@@ -31,14 +31,16 @@
   (inform-of-move current-player (str picked-position))
   (play-turn (put-sign-on-board board (str picked-position) current-player) (inc level))))
 
+(defn play-move [board level]
+  (if (= (mod level 2) 0) 
+    (human-move board level)
+    (computer-move board level)))
+
 (defn play-turn [board level]
   (show-board (get-rows board))
   (cond 
     (is-over? board) (print-final-result (get-winner-sign board))
-    :else (do
-      (cond 
-        (= (mod level 2) 0) (human-move board level)
-        (not= (mod level 2) 0) (computer-move board level)))))
+    :else (play-move board level)))
 
 (defn run-game []
   (print-prompt hello-prompt)
