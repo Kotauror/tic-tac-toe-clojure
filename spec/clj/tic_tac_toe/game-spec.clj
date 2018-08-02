@@ -8,6 +8,7 @@
                                     print-final-result]]
             [tic_tac_toe.board :refer [get-rows
                                        get-winner-sign
+                                       get-current-mark
                                        is-over?
                                        create-board]]
             [tic_tac_toe.game :refer [run-game
@@ -26,11 +27,20 @@
       (should-have-invoked
           :play-turn-stub
           {:with
-            [:board
-            player-one-sign]})
+            [:board]})
 
       (should-have-invoked
           :print-prompt-stub))))
+
+;(describe "run-game"
+ ; (with-stubs)
+ ; (it "runs the whole game against computer"
+  
+ ; (should= "O has won!\n"
+  ;(with-out-str
+  ;(with-in-str "1\n3\n9\n"
+ ; (run-game)))))
+
 
 (describe "play-turn"
   (with-stubs)
@@ -43,7 +53,7 @@
       get-winner-sign (stub :get-winner-sign-stub {:return :sign})
       print-final-result (stub :print-final-result-stub)]
 
-      (play-turn [1 2 3 4 5 6 7 8 9] player-one-sign)
+      (play-turn [1 2 3 4 5 6 7 8 9])
 
       (should-have-invoked
         :show-board-stub
@@ -72,7 +82,7 @@
     (should= "X has won!\n"
       (with-out-str 
         (with-in-str "1\n6\n2\n7\n3"
-          (play-turn [1 2 3 4 5 6 7 8 9] "X"))))))
+          (play-turn [1 2 3 4 5 6 7 8 9]))))))
   (it "plays a winning game for O"
     (with-redefs [
       show-board (stub :show-board-stub)
@@ -81,5 +91,5 @@
     (should= "O has won!\n"
       (with-out-str 
         (with-in-str "1\n4\n9\n5\n3\n6"
-          (play-turn [1 2 3 4 5 6 7 8 9] "X")))))))
+          (play-turn [1 2 3 4 5 6 7 8 9])))))))
 
