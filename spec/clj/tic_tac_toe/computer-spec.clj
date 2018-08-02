@@ -17,13 +17,13 @@
 (describe "minimax"
   (it "X takes winning position"
     (should= 6
-     (minimax ["X" "O" "X" 4 "O" 6 "O" "X" "X"] "X" "O")))
+     (minimax ["X" "O" "X" 4 "O" 6 "O" "X" "X"])))
   (it "O takes winning position"
     (should= 6
-     (minimax ["X" "X" 3 "O" "O" 6 "X" 8 9] "O" "X")))
+     (minimax ["X" "X" 3 "O" "O" 6 "X" 8 9])))
   (it "X prevents O from winning"
     (should= 6
-      (minimax ["X" "X" "O" 4 5 6 7 8 "O"] "X" "O")))
+      (minimax ["X" "X" "O" 4 5 6 7 8 "O"])))
   (it "O prevents X from winning"
     (should= 6
-      (minimax ["O" "O" "X" 4 5 6 7 8 "X"] "O" "X"))))
+      (minimax ["O" "O" "X" 4 5 6 7 8 "X"]))))

@@ -1,6 +1,8 @@
 (ns tic_tac_toe.computer
   (:require [tic_tac_toe.signs :refer [switch-signs]]
             [tic_tac_toe.board :refer [winner?
+                                       get-current-mark
+                                       get-opponent-mark
                                        get-free-places
                                        put-sign-on-board
                                        is-tie?]]))
@@ -37,5 +39,5 @@
        scores (map #(get-score (put-sign-on-board board (str %) (get-sign-for-depth depth first-sign second-sign)) first-sign second-sign (inc depth)) moves)]
   (zipmap moves scores)))
 
-(defn minimax [board first-sign second-sign]
-  (best-move (score-moves board first-sign second-sign 0)))
+(defn minimax [board]
+  (best-move (score-moves board (get-current-mark board) (get-opponent-mark board) 0)))

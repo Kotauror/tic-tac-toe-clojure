@@ -16,6 +16,8 @@
                                        winner?
                                        is-tie?
                                        is-over?
+                                       get-current-mark
+                                       get-opponent-mark
                                        is-valid-position?]]))
 
 (describe "create-board"
@@ -140,3 +142,24 @@
     (should= nil
     (get-winner-sign ["X" "X" 3 4 5 6 7 8 9]))))
 
+(describe "get-current-mark"
+  (it "returns the current mark at the beginning of the game"
+    (should= "X"
+    (get-current-mark [1 2 3 4 5 6 7 8 9])))
+  (it "returns the current mark for X in the middle of game"
+    (should= "X"
+    (get-current-mark ["X" "O" 3 4 5 6 7 8 9])))
+  (it "returns the current mark for O in the middle of game"
+    (should= "O"
+    (get-current-mark ["X" 2 3 4 5 6 7 8 9]))))
+
+(describe "get-opponent-mark"
+  (it "returns the opponent mark at the beginning of the game"
+    (should= "O"
+    (get-opponent-mark [1 2 3 4 5 6 7 8 9])))
+  (it "returns the opponent mark for O in the middle of the game"
+    (should= "O"
+    (get-opponent-mark ["X" "O" 3 4 5 6 7 8 9])))
+  (it "returns the opponent mark for X in the middle of the game"
+    (should= "X"
+    (get-opponent-mark ["X" "O" "X" 4 5 6 7 8 9]))))
