@@ -19,17 +19,16 @@
 
 (declare play-turn)
 
-(defn human-move [board level]
-  (let [picked-position (pick-position board)
-  current-player (get-current-mark board)]
+(defn process-move [picked-position board level]
+  (let [current-player (get-current-mark board)]
   (inform-of-move current-player picked-position)
   (play-turn (put-sign-on-board board picked-position current-player) (inc level))))
 
+(defn human-move [board level]
+  (process-move (pick-position board) board level))
+
 (defn computer-move [board level]
-  (let [picked-position (minimax board)
-  current-player (get-current-mark board)]
-  (inform-of-move current-player (str picked-position))
-  (play-turn (put-sign-on-board board (str picked-position) current-player) (inc level))))
+  (process-move (str (minimax board)) board level))
 
 (defn play-move [board level]
   (if (= (mod level 2) 0) 
@@ -38,11 +37,10 @@
 
 (defn play-turn [board level]
   (show-board (get-rows board))
-  (cond 
-    (is-over? board) (print-final-result (get-winner-sign board))
-    :else (play-move board level)))
+  (if (is-over? board) 
+    (print-final-result (get-winner-sign board))
+    (play-move board level)))
 
 (defn run-game []
   (print-prompt hello-prompt)
   (play-turn (create-board) 0))
-
