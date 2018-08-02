@@ -37,5 +37,5 @@
        scores (map #(get-score (put-sign-on-board board (str %) (get-sign-for-depth depth first-sign second-sign)) first-sign second-sign (inc depth)) moves)]
   (zipmap moves scores)))
 
-(defn minimax [board depth first-sign second-sign]
+(defn minimax [board first-sign second-sign]
   (best-move (score-moves board first-sign second-sign 0)))
