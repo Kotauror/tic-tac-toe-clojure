@@ -6,6 +6,9 @@
                                        is-tie?]]))
 (declare score-moves)
 
+(def max-value-of-place 10)
+(def tie-value-of-place 0)
+
 (defn best-move-and-score [depth moves] 
   (if (= (mod depth 2) 0)
     (apply max-key val moves)
@@ -17,22 +20,22 @@
 (defn best-move [moves]
   (key (apply max-key val moves)))
 
-(defn get-score [board active-sign passive-sign depth]
-  (cond (winner? active-sign board) (- 10 depth)
-        (winner? passive-sign board) (- (- 10 depth))
-        (is-tie? board) 0
-        :else (best-score-at-depth depth (score-moves board active-sign passive-sign depth))))
+(defn get-score [board first-sign second-sign depth]
+  (cond (winner? first-sign board) (- max-value-of-place depth)
+        (winner? second-sign board) (- (- max-value-of-place depth))
+        (is-tie? board) tie-value-of-place
+        :else (best-score-at-depth depth (score-moves board first-sign second-sign depth))))
 
-(defn player-sign [depth active-sign passive-sign]
+(defn get-sign-for-depth [depth first-sign second-sign]
   (if (= (mod depth 2) 0)
-    active-sign
-    passive-sign))
+    first-sign
+    second-sign))
 
-(defn score-moves [board active-sign passive-sign depth]
+(defn score-moves [board first-sign second-sign depth]
   (let [
        moves (get-free-places board)
-       scores (map #(get-score (put-sign-on-board board (str %) (player-sign depth active-sign passive-sign)) active-sign passive-sign (inc depth)) moves)]
+       scores (map #(get-score (put-sign-on-board board (str %) (get-sign-for-depth depth first-sign second-sign)) first-sign second-sign (inc depth)) moves)]
   (zipmap moves scores)))
 
-(defn minimax [board level active-sign passive-sign]
-  (best-move (score-moves board active-sign passive-sign 0)))
+(defn minimax [board depth first-sign second-sign]
+  (best-move (score-moves board first-sign second-sign 0)))
