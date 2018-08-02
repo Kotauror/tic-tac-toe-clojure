@@ -11,8 +11,12 @@
 (def max-value-of-place 10)
 (def tie-value-of-place 0)
 
+(defn is-max-player-level? [depth]
+  (boolean
+    (= (mod depth 2) 0)))
+
 (defn best-move-and-score [depth moves] 
-  (if (= (mod depth 2) 0)
+  (if (is-max-player-level? depth)
     (apply max-key val moves)
     (apply min-key val moves)))
 
@@ -29,7 +33,7 @@
         :else (best-score-at-depth depth (score-moves board first-sign second-sign depth))))
 
 (defn get-sign-for-depth [depth first-sign second-sign]
-  (if (= (mod depth 2) 0)
+  (if (is-max-player-level? depth)
     first-sign
     second-sign))
 
