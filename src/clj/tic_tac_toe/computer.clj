@@ -26,7 +26,7 @@
     (pick-highest-scoring-move moves)
     (pick-lowest-scoring-move moves)))
 
-(defn best-move [moves]
+(defn get-best-move [moves]
   (key (apply max-key val moves)))
 
 (defn get-score [board first-sign second-sign depth]
@@ -47,4 +47,4 @@
   (zipmap moves scores)))
 
 (defn minimax [board]
-  (best-move (score-moves board (get-current-mark board) (get-opponent-mark board) 0)))
+  (get-best-move (score-moves board (get-current-mark board) (get-opponent-mark board) 0)))
