@@ -1,5 +1,5 @@
 (ns tic_tac_toe.computer
-  (:require [tic_tac_toe.signs :refer [switch-signs]]
+  (:require [tic_tac_toe.signs :refer []]
             [tic_tac_toe.board :refer [winner?
                                        get-current-mark
                                        get-opponent-mark

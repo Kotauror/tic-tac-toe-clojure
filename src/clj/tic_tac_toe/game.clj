@@ -7,8 +7,7 @@
                                        create-board
                                        put-sign-on-board]]
             [tic_tac_toe.signs :refer [player-one-sign
-                                       player-two-sign
-                                       switch-signs]]
+                                       player-two-sign]]
             [tic_tac_toe.human_player :refer [pick-position]]
             [tic_tac_toe.computer :refer [minimax]]
             [tic_tac_toe.ui :refer [print-final-result
